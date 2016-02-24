@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+/* DEFAULT FONTS */
+
+body {
+	font-family: 'Minion Pro', 'Adobe Caslon Pro', serif;
+	/*font-family: proxima-nova, Proxima Nova, Helvetica Neue, sans-serif;*/
+	font-size: 10px;
+	font-weight: 300;
+	color: #555;
+}
+
+#nav, #header .logo, #intro .copy, .title {
+	font-family: 'proxima-nova', 'Proxima Nova', 'Helvetica Neue', sans-serif;
+}
+
+/* GRID */
+
+#intro, #portfolio, .content_.divider {
+	margin: 0 180px;
+}
+#nav {
+	width: 180px;
+}
+
+.ideas .piece_.img {
+	width: 66%;
+}
+.ideas .piece_ img {
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+	max-height: 80vh;
+}
+.ideas .piece_.caption {
+	width: 33%;
+}
+
+/* GENERAL */
+
+.divider, .content_.divider {
+	width: 40px;
+	height: 2px;
+	background-color: #555;
+}
+
+/* HEADER */
+
+#header {
+	height: 180px;
+	width: 100%;
+	background-color: #f1f1f1;
+	background: url("http://www.emjayschoen.com/images/header.jpg") no-repeat;
+	background-size: auto 100%;
+	background-position: 34px 0;
+	margin-bottom: 100px;
+}
+
+#header .logo {
+	position: absolute;
+	top: 65px;
+	left: 298px;
+	font-size: 5em;
+}
+
+/* NAV */
+
+#nav {
+	position: absolute;
+	top: 284px;
+}
+
+
+.nav-list {
+	padding: 0;
+}
+.nav-item {
+	list-style: none;
+	text-transform: uppercase;
+	font-style: italic;
+}
+
+.nav-item:hover {
+	opacity: .5;
+}
+
+#main-nav {
+	margin-left: 40px;
+}
+
+.main_.nav-link {
+	display: block;
+	font-size: 1.4em;
+	padding: 20px 0;
+}
+.main_.nav-item:first-child .nav-link {
+	padding-top: 0;
+}
+.main_.nav-item:last-child .nav-link {
+	padding-bottom: 0;
+}
+
+#work .nav-item.--active {
+	color: #48A4CE;
+}
+
+/* CONTENT */
+
+.content_.divider {
+
+}
+
+/* INTRO */
+
+#intro {
+	margin-bottom: 120px;
+}
+
+.intro_.tagline {
+	margin-bottom: 40px;
+	font-size: 2em;
+	font-weight: 700;
+	color: #bbb;
+}
+.intro_.description {
+	margin-top: 40px;
+}
+.intro_.copy {
+	font-size: 2.8em;
+}
+
+/* IDEAS */
+
+.ideas_.piece {
+	padding: 100px 0;
+}
+
+.ideas_.title {
+	margin-top: 20px;
+	margin-bottom: 40px;
+	font-size: 4em;
+	font-weight: 600;
+}
+
+.ideas .piece_.title {
+	margin-bottom: 20px;
+	font-size: 2.8em;
+	font-weight: 500;
+}
+
+.ideas .piece_.img {
+	display: inline-block;
+	vertical-align: top;
+}
+.ideas .piece_.caption {
+	display: inline-block;
+	padding-left: 40px;
+	vertical-align: top;
+}
+.ideas .piece_.copy, .ideas .piece_.info {
+	font-size: 1.4em;
+	margin-bottom: 20px;
+}
+
+.ideas .piece_.info {
+	font-style: italic;
+}
+
+.ideas_.divider {
+	width: 100%;
+	height: 1px;
+	background-color: #D0D0D0;
+}
+
+/* --PORTFOLIO-- */
+
+#portfolio {
+	margin-bottom: 100px;
+}
+
+#work .content_.divider {
+	width: auto;
+    height: 4px;
+    background-color: #8BBAD0;
+}
+
+/* --BLOG-- */
+
+
+
+
