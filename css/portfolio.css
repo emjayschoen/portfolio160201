@@ -30,14 +30,8 @@ body {
 	width: 180px;
 }
 
-.ideas .piece_.img {
+.ideas .piece_.image-set {
 	width: 66%;
-}
-.ideas .piece_ img {
-	display: block;
-	margin: 0 auto;
-	max-width: 100%;
-	max-height: 80vh;
 }
 .ideas .piece_.caption {
 	width: 33%;
@@ -51,13 +45,25 @@ body {
 	background-color: #555;
 }
 
+.text-link {
+	border-bottom: 1px solid #ABD0E0;
+	transition: opacity .15s ease-out;
+}
+.text-link:hover {
+	opacity: .6;
+}
+
+.--no-gap {
+	margin: 0 !important;
+}
+
 /* HEADER */
 
 #header {
 	height: 180px;
 	width: 100%;
 	background-color: #f1f1f1;
-	background: url("http://www.emjayschoen.com/images/header.jpg") no-repeat;
+	background: url("../images/header.jpg") no-repeat;
 	background-size: auto 100%;
 	background-position: 34px 0;
 	margin-bottom: 100px;
@@ -120,7 +126,7 @@ body {
 /* INTRO */
 
 #intro {
-	margin-bottom: 120px;
+	margin-bottom: 80px;
 }
 
 .intro_.tagline {
@@ -129,11 +135,15 @@ body {
 	font-weight: 700;
 	color: #bbb;
 }
+.intro_.tagline .--ux {
+	color: #9C9C9C;
+}
 .intro_.description {
 	margin-top: 40px;
 }
 .intro_.copy {
 	font-size: 2.8em;
+	margin-bottom: 40px;
 }
 
 /* IDEAS */
@@ -143,7 +153,7 @@ body {
 }
 
 .ideas_.title {
-	margin-top: 20px;
+	margin-top: 60px;
 	margin-bottom: 40px;
 	font-size: 4em;
 	font-weight: 600;
@@ -155,10 +165,23 @@ body {
 	font-weight: 500;
 }
 
-.ideas .piece_.img {
+.ideas .piece_.image-set {
 	display: inline-block;
 	vertical-align: top;
 }
+.ideas .piece_.image {
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+	max-height: 80vh;
+}
+.ideas .piece_.image.--bordered {
+	border: 2px solid #eee;
+}
+.ideas .piece_.image.--app-icon {
+	border-radius: 25%;
+}
+
 .ideas .piece_.caption {
 	display: inline-block;
 	padding-left: 40px;
@@ -171,6 +194,8 @@ body {
 
 .ideas .piece_.info {
 	font-style: italic;
+	color: #969696;
+	margin-bottom: 40px;
 }
 
 .ideas_.divider {
@@ -187,11 +212,215 @@ body {
 
 #work .content_.divider {
 	width: auto;
-    height: 4px;
-    background-color: #8BBAD0;
+    height: 5px;
+    background-color: #EAEAEA;
+    margin-right: 0;
 }
 
 /* --BLOG-- */
+
+
+
+
+/* ALL TESTS */
+
+body:not([class*="test"]) .test-only {
+	display: none;
+}
+
+/* TEST - CAROUSEL */
+
+
+.test-carousel .ideas .piece_ .piece-img {
+	display: inline-block;
+	position: relative;
+	left: 0;
+	margin: 0;
+	width: 15%;
+	transition: all 1s ease-in-out;
+}
+.test-carousel .ideas .piece_ .piece-img.--full, .test-carousel .ideas_.test-a .piece_ .piece-img:nth-of-type(2) {
+	width: 66%;
+}
+.test-carousel .ideas_.test-a .piece_ .piece-img {
+	left: -66%;
+}
+
+.test-carousel .piece:not(:first-of-type), .test-carousel .caption {
+	display: none !important;
+}
+
+
+/* TEST - CAROUSEL A */
+
+
+.test-carousel-a .ideas_ .piece_.image-set {
+	display: inline-block;
+	position: relative;
+	left: 0;
+	white-space: nowrap;
+	transition: all 1s ease-in-out;
+}
+
+.test-carousel-a .ideas_ .piece_.image {
+	display: inline-block;
+	margin-right: 60px;
+	padding: 170px 0;
+	max-width: 40vw;
+	height: auto;
+	vertical-align: middle;
+	transition: all 1s ease-in-out;
+}
+.test-carousel-a .ideas_.test-a .piece_.image:nth-of-type(1), .test-carousel-a .ideas_.test-b .piece_.image:nth-of-type(2), .test-carousel-a .ideas_.test-c .piece_.image:nth-of-type(3) {
+	padding: 0;
+}
+.test-carousel-a .ideas_.test-b .piece_.image-set {
+	left: -210px;
+}
+.test-carousel-a .ideas_.test-c .piece_.image-set {
+	left: -400px;
+}
+
+.test-carousel-a .piece:not(:first-of-type) {
+	display: none !important;
+}
+
+
+
+/* TEST - CAROUSEL B */
+
+
+.test-carousel-b .ideas_ .piece_.image-set {
+	display: inline-block;
+	position: relative;
+	left: 0;
+	white-space: nowrap;
+	transition: all 1s ease-out;
+}
+
+.test-carousel-b .ideas_ .piece_.image {
+	display: inline-block;
+	/*max-width: 40vw;*/
+	height: auto;
+	vertical-align: middle;
+	/*transform: scale(.4);*/
+	transition: all 1s ease-out;
+}
+.test-carousel-b .ideas_.test-a .piece_.carousel-item:nth-of-type(1), .test-carousel-b .ideas_.test-b .piece_.carousel-item:nth-of-type(2), .test-carousel-b .ideas_.test-c .piece_.carousel-item:nth-of-type(3) {
+	max-width: 40vw;
+	max-height: 80vh;
+}
+.test-carousel-b .ideas_.test-b .piece_.image-set {
+	transform: translateX(-210px);
+}
+.test-carousel-b .ideas_.test-c .piece_.image-set {
+	transform: translateX(-400px);
+}
+
+.test-carousel-b .piece:not(:nth-of-type(2)) {
+	display: none !important;
+}
+
+.test-carousel-b .ideas .piece_.image {
+	margin: 0 auto;
+	max-width: 100%;
+	max-height: 100%;
+}
+.test-carousel-b .piece_.carousel-item {
+	display: inline-block;
+	max-width: 120px;
+	max-height: 120px;
+	transition: all 1s ease-out;
+}
+
+/* TEST - CAROUSEL C */
+
+
+.test-carousel-c .ideas_ .piece_.image-set {
+	display: inline-block;
+	position: relative;
+	left: 0;
+	white-space: nowrap;
+	z-index: -1;
+	transition: all 1s ease-out;
+}
+
+.test-carousel-c .piece_.carousel-item {
+	display: inline-block;
+	width: 170px;
+	height: 80vh;
+	margin-right: 60px;
+	padding: 170px 0;
+	/* background-color: #0bf; */
+	vertical-align: middle;
+	transition: all 1s ease-out;
+}
+
+.test-carousel-c .piece_.image {
+	display: inline-block;
+	height: auto;
+	max-width: 100%;
+	max-height: 100%;
+	vertical-align: middle;
+	transition: all 1s ease-out;
+}
+
+
+.test-carousel-c .ideas_.test-a .piece_.carousel-item:nth-of-type(1), .test-carousel-c .ideas_.test-b .piece_.carousel-item:nth-of-type(2), .test-carousel-c .ideas_.test-c .piece_.carousel-item:nth-of-type(3) {
+	width: 100%;
+	padding: 0;
+}
+.test-carousel-c .ideas_.test-a .piece_.carousel-item:nth-of-type(1) .img, .test-carousel-c .ideas_.test-b .piece_.carousel-item:nth-of-type(2) .img, .test-carousel-c .ideas_.test-c .piece_.carousel-item:nth-of-type(3) .img {
+	width: 100%; /* Width should be set w/ JS while the image is active */
+}
+.test-carousel-c .ideas_.test-b .piece_.image-set {
+	transform: translateX(-170px);
+}
+.test-carousel-c .ideas_.test-c .piece_.image-set {
+	transform: translateX(-400px);
+}
+
+.test-carousel-c .piece:not(:nth-of-type(2)) {
+	display: none !important;
+}
+
+.test-carousel-c .piece_.carousel-item::before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+
+/* TEST - CAROUSEL D */
+
+.test-carousel-d .piece_.image-set {
+	white-space: nowrap;
+}
+
+.test-carousel-d .piece_.main-image {
+	position: relative;
+}
+
+.test-carousel-d .piece_.image {
+	display: inline-block;
+	max-width: 100%;
+	margin-right: 40px;
+	transition: all .5s ease-in-out;
+}
+
+.test-carousel-d .piece_.thumbnail {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+
+.test-carousel-d .piece:not(:nth-of-type(3)) {
+	display: none !important;
+}
+
 
 
 
