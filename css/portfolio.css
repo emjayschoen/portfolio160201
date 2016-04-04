@@ -24,15 +24,18 @@ body {
 
 /* GRID */
 
-#intro, .ideas_, .content_.divider, .ideas .piece.--carousel .caption {
-	margin: 0 150px;
+#intro, .ideas_ {
+	padding: 0 150px;
 }
 .ideas .piece.--carousel .image-set {
-	transform: translateX(150px);
+	transform: translateX(0);
 }
 #nav {
 	width: 150px;
 }
+/*.ideas .piece.--carousel .image {
+	max-width: calc(100% - .66*300px); Padding (300px) needs to be taken away from width of image-set (.66%)
+}*/
 
 .ideas .piece_.image-set {
 	width: 66%;
@@ -40,13 +43,13 @@ body {
 .ideas .piece_.caption {
 	width: 33%;
 }
-.ideas .piece.--carousel .image {
-	max-width: calc(100% - .66*300px); /* Padding (300px) needs to be taken away from width of image-set (.66%) */
+.ideas .piece.--carousel .caption {
+	width: 50%;
 }
 
 /* GENERAL */
 
-.divider, .content_.divider {
+.intro_.divider {
 	width: 40px;
 	height: 2px;
 	background-color: #555;
@@ -126,9 +129,6 @@ body {
 
 /* CONTENT */
 
-.content_.divider {
-
-}
 
 /* INTRO */
 
@@ -156,7 +156,7 @@ body {
 /* IDEAS */
 
 .ideas_.piece {
-	padding: 120px 0;
+	padding-top: 120px;
 }
 
 .ideas_.title {
@@ -198,6 +198,9 @@ body {
 	font-size: 1.4em;
 	margin-bottom: 20px;
 }
+.ideas .piece_.copy:last-child {
+	margin-bottom: 0;
+}
 
 .ideas .piece_.info {
 	font-style: italic;
@@ -206,6 +209,7 @@ body {
 }
 
 .ideas_.divider {
+	margin-top: 120px;
 	width: auto;
 	height: 1px;
 	background-color: #D0D0D0;
@@ -236,7 +240,6 @@ body {
 }
 .ideas .piece.--carousel .caption {
 	display: inline-block;
-	margin-top: 40px;
 }
 
 
@@ -248,7 +251,7 @@ body {
 .ideas .piece.--carousel .thumbnail-set {
 	position: relative;
 	left: 0;
-	margin-top: 40px;
+	margin: 40px 0;
 	text-align: center;
 	transition: all .5s cubic-bezier(.29, .15, 0.34, 1);
 }
@@ -292,7 +295,7 @@ body {
 
 
 
-/* ALL TESTS */
+/* --ALL TESTS-- */
 
 body:not([class*="test"]) .test-only {
 	display: none;
@@ -336,5 +339,42 @@ body:not([class*="test"]) .test-only {
 }
 
 
+/* --MOBILE-- */
 
+@media (min-width: 800px) and (max-width: 1150px) {
+	#intro, .ideas_ {
+		padding: 0 10vw;
+	}
+}
+@media (max-width: 1000px) {
+	.ideas .piece_.image-set {
+		width: 100%;
+	}
+	.ideas .piece_.caption {
+		width: 50%;
+	}
+	.ideas_.piece {
+		padding-top: 80px;
+	}
+	.ideas_.divider {
+		margin-top: 80px;
+	}
+	.ideas .piece_.image {
+		margin: 0;
+	}
+	.ideas .piece.--captioned .caption {
+		margin-top: 40px;
+		padding: 0;
+	}
+
+}
+@media (max-width: 800px) {
+	#intro, .ideas_ {
+		padding: 0 5vw;
+	}
+	.ideas .piece_.caption, .ideas .piece.--carousel .caption {
+		width: 100%;
+		max-width: 480px;
+	}
+}
 
