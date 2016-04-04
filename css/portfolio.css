@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -23,11 +24,14 @@ body {
 
 /* GRID */
 
-#intro, #portfolio, .content_.divider {
-	margin: 0 180px;
+#intro, .ideas_, .content_.divider, .ideas .piece.--carousel .caption {
+	margin: 0 150px;
+}
+.ideas .piece.--carousel .image-set {
+	transform: translateX(150px);
 }
 #nav {
-	width: 180px;
+	width: 150px;
 }
 
 .ideas .piece_.image-set {
@@ -35,6 +39,9 @@ body {
 }
 .ideas .piece_.caption {
 	width: 33%;
+}
+.ideas .piece.--carousel .image {
+	max-width: calc(100% - .66*300px); /* Padding (300px) needs to be taken away from width of image-set (.66%) */
 }
 
 /* GENERAL */
@@ -149,7 +156,7 @@ body {
 /* IDEAS */
 
 .ideas_.piece {
-	padding: 100px 0;
+	padding: 120px 0;
 }
 
 .ideas_.title {
@@ -182,7 +189,7 @@ body {
 	border-radius: 25%;
 }
 
-.ideas .piece_.caption {
+.ideas .piece.--captioned .caption {
 	display: inline-block;
 	padding-left: 40px;
 	vertical-align: top;
@@ -199,9 +206,72 @@ body {
 }
 
 .ideas_.divider {
-	width: 100%;
+	width: auto;
 	height: 1px;
 	background-color: #D0D0D0;
+}
+
+/* --CAROUSEL-- */
+
+.ideas .piece.--carousel {
+	margin: 0;
+	overflow: hidden;
+}
+.ideas .piece.--carousel .image-set {
+	position: relative;
+	white-space: nowrap;
+	transition: all .6s cubic-bezier(.29, .15, 0.34, 1);
+}
+.ideas .piece.--carousel .image {
+	display: inline-block;
+	max-height: 70vh;
+	margin-right: 80px;
+	vertical-align: middle;
+	opacity: .15;
+	cursor: pointer;
+	transition: inherit;
+}
+.ideas .piece.--carousel .image:hover {
+	opacity: .6;
+}
+.ideas .piece.--carousel .caption {
+	display: inline-block;
+	margin-top: 40px;
+}
+
+
+.ideas .piece.--carousel .image.--active {
+	opacity: 1;
+}
+
+
+.ideas .piece.--carousel .thumbnail-set {
+	position: relative;
+	left: 0;
+	margin-top: 40px;
+	text-align: center;
+	transition: all .5s cubic-bezier(.29, .15, 0.34, 1);
+}
+.ideas .piece.--carousel .thumbnail {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background-color: #ccc;
+	margin: 0 5px;
+	cursor: pointer;
+	transform: scale(calc(8 / 12));
+	transition: inherit;
+}
+
+.ideas .piece.--carousel .thumbnail:hover {
+	transform: scale(1);
+}
+
+.ideas .piece.--carousel .thumbnail.--active  {
+	background-color: #63a7b7;
+	background-color: #999;
+	transform: scale(1);
 }
 
 /* --PORTFOLIO-- */
@@ -226,6 +296,43 @@ body {
 
 body:not([class*="test"]) .test-only {
 	display: none;
+}
+
+/* TEST - GRID OVERLAY */
+
+.test-grid .test-only:not(.grid-overlay){
+	display: none;
+}
+
+.grid-overlay {
+	position: fixed;
+	top: 0; right: 0; bottom: 0; left: 0;
+	background-color: #f2f2f2;
+	opacity: .3;
+	z-index: 1000;
+	pointer-events: none;
+}
+
+.grid-overlay_.col-half {
+	position: absolute;
+	left: 50%;
+	top: 0;
+	width: 1px;
+	height: 100%;
+	background-color: #ff0000;
+}
+
+.test-grid .image-after {
+	content: "";
+	display: inline-block;
+	display: none;
+	position: relative;
+	width: 3px;
+	height: 80vh;
+	opacity: .5;
+	background-color: #0bf;
+	z-index: 10;
+	vertical-align: top;
 }
 
 /* TEST - CAROUSEL */
@@ -422,6 +529,113 @@ body:not([class*="test"]) .test-only {
 }
 
 
+/* TEST - CAROUSEL E */
+
+.test-carousel-e .piece_.image-set {
+	position: relative;
+	left: 200px;
+	white-space: nowrap;
+	transition: all .6s ease-out;
+}
+
+.test-carousel-e .piece_.image {
+	/*position: relative;*/
+}
+
+.test-carousel-e .piece_.image {
+	display: inline-block;
+	max-width: 100%;
+	margin-right: 40px;
+	opacity: .2;
+	transition: inherit;
+}
+
+
+.test-carousel-e .piece.test-a .image:nth-of-type(1) {
+	opacity: 1;
+}
+.test-carousel-e .piece.test-b .image-set{
+	left: -300px;
+}
+.test-carousel-e .piece.test-b .image:nth-of-type(2) {
+	opacity: 1;
+}
+
+.test-carousel-e .piece:not(:nth-of-type(4)) {
+	display: none !important;
+}
+
+/* TEST - CAROUSEL F */
+
+.test-carousel-f .piece_.image-set {
+	position: relative;
+	left: 200px;
+	white-space: nowrap;
+	transition: all .6s ease-out;
+}
+
+.test-carousel-f .piece_.image {
+	/*position: relative;*/
+}
+
+.test-carousel-f .piece_.image {
+	display: inline-block;
+	max-width: 100%;
+	margin-right: 40px;
+	opacity: .2;
+	transition: inherit;
+}
+
+
+.test-carousel-f .piece.test-a .image:nth-of-type(1), .test-carousel-f .piece.test-b .image:nth-of-type(2), .test-carousel-f .piece.test-c .image:nth-of-type(3) {
+	opacity: 1;
+}
+.test-carousel-f .piece.test-b .image-set{
+	left: -300px;
+}
+.test-carousel-f .piece.test-c .image-set{
+	left: -600px;
+}
+
+
+.test-carousel-f .piece_.thumbnail-set {
+	position: relative;
+	left: 0;
+	margin: 20px 0;
+	text-align: center;
+	transition: all .4s ease-out;
+}
+.test-carousel-f .piece_.thumbnail {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background-color: #ccc;
+	margin: 0 4px;
+	cursor: pointer;
+	transform: scale(calc(7 / 12));
+	transition: inherit;
+}
+
+.test-carousel-f .piece.test-b .thumbnail-set {
+	left: -15px;
+}
+.test-carousel-f .piece.test-c .thumbnail-set {
+	left: -30px;
+}
+
+.test-carousel-f .piece_.thumbnail:hover {
+	transform: scale(1);
+}
+
+.test-carousel-f .piece.test-a .thumbnail:nth-of-type(1), .test-carousel-f .piece.test-b .thumbnail:nth-of-type(2), .test-carousel-f .piece.test-c .thumbnail:nth-of-type(3)  {
+	background-color: #63a7b7;
+	transform: scale(1);
+}
+
+.test-carousel-f .piece:not(:nth-of-type(5)) {
+	display: none !important;
+}
 
 
 

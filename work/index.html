@@ -20,6 +20,7 @@
 </section>
 
 <!-- Nav -->
+<!--
 <nav id="nav" class="--inline">
 
 	<ul id="main-nav" class="nav-list">
@@ -29,6 +30,10 @@
 	</ul>
 
 </nav> <!-- / Nav -->
+
+<div class="grid-overlay test-only">
+	<div class="grid-overlay_ col-half"></div>
+</div>
 
 <!-- Main Content -->
 <section id="main-content">
@@ -88,10 +93,34 @@
 			</div>
 		</div>
 
+		<div id="portfolio-read-dog" class="portfolio_ ideas_ piece test-only test-a">
+			<div class="piece_ image-set">
+				<img class="piece_ image" src="../images/portfolio/ink-series-fall.jpg">
+				<img class="piece_ image" src="../images/portfolio/ink-series-look.jpg">
+				<img class="piece_ image" src="../images/portfolio/ink-series-robot.jpg">
+				<img class="piece_ image" src="../images/portfolio/ink-series-shades.jpg">
+			</div>
+		</div>
+
+		<div id="portfolio-read-dog" class="portfolio_ ideas_ piece test-only test-a">
+			<div class="piece_ image-set">
+				<img class="piece_ image" src="../images/portfolio/ink-series-fall.jpg">
+				<img class="piece_ image" src="../images/portfolio/ink-series-look.jpg">
+				<img class="piece_ image" src="../images/portfolio/ink-series-robot.jpg">
+				<img class="piece_ image" src="../images/portfolio/ink-series-shades.jpg">
+			</div>
+			<div class="piece_ thumbnail-set">
+				<div class="piece_ thumbnail"></div>
+				<div class="piece_ thumbnail"></div>
+				<div class="piece_ thumbnail"></div>
+				<div class="piece_ thumbnail"></div>
+			</div>
+		</div>
+
 		<!-- / TESTS -->
 
 
-		<div id="portfolio-fly" class="portfolio_ ideas_ piece">
+		<div id="portfolio-fly" class="portfolio_ ideas_ piece --captioned">
 			<div class="piece_ image-set">
 				<img class="piece_ image" src="../images/portfolio/fly.jpg">
 			</div>
@@ -107,22 +136,29 @@
 
 		<div class="portfolio_ ideas_ divider"></div>
 
-		<div id="portfolio-read-dog" class="portfolio_ ideas_ piece">
+		<div id="portfolio-read-dog" class="portfolio_ ideas_ piece --carousel">
 			<div class="piece_ image-set">
-				<img class="piece_ image" src="../images/portfolio/read-dog.png">
+				<img class="piece_ image --active" src="../images/portfolio/read-dog.png">
+				<img class="piece_ image --app-icon" src="../images/portfolio/read-dog-app-icon.png">
+				<img class="piece_ image" src="../images/portfolio/read-dog-logo.png">
+			</div>
+			<div class="piece_ thumbnail-set">
+				<div class="piece_ thumbnail --active"></div>
+				<div class="piece_ thumbnail"></div>
+				<div class="piece_ thumbnail"></div>
 			</div>
 			<div class="piece_ caption">
 				<h3 class="piece_ title">Read Dog</h3>
 				<p class="piece_ info">Logo Design</p>
 
-				<p class="piece_ copy">A book subscription service that brings hand-picked books directly to your armchair.</p>
-				<p class="piece_ copy">The logo reflects Read Dog's warm, engaging nature. Designed to accomodate print, web, and mobile.</p>
+				<p class="piece_ copy">A book subscription service that brings hand-picked books directly to your armchair. The logo reflects Read Dog's warm, engaging nature.</p>
+				<!-- <p class="piece_ copy"> Designed to accomodate print, web, and mobile.</p> -->
 			</div>
 		</div>
 
 		<div class="portfolio_ ideas_ divider"></div>
 
-		<div id="portfolio-findthebest" class="portfolio_ ideas_ piece">
+		<div id="portfolio-findthebest" class="portfolio_ ideas_ piece --captioned">
 			<div class="piece_ image-set">
 				<img class="piece_ image" src="../images/portfolio/findthebest.jpg">
 			</div>
@@ -137,7 +173,7 @@
 
 		<div class="portfolio_ ideas_ divider"></div>
 
-		<div id="portfolio-columbia-university" class="portfolio_ ideas_ piece">
+		<div id="portfolio-columbia-university" class="portfolio_ ideas_ piece --captioned">
 			<div class="piece_ image-set">
 				<img class="piece_ image" src="../images/portfolio/columbia-university.jpg">
 			</div>
@@ -152,7 +188,41 @@
 
 		<div class="portfolio_ ideas_ divider"></div>
 
-		<div id="portfolio-city-nights" class="portfolio_ ideas_ piece">
+		<div id="portfolio-ink-series" class="portfolio_ ideas_ piece --carousel">
+			<div class="piece_ image-set">
+				<img class="piece_ image --active" src="../images/portfolio/ink-series-look.jpg">
+				<img class="piece_ image" src="../images/portfolio/ink-series-robot.jpg">
+				<img class="piece_ image" src="../images/portfolio/ink-series-fall.jpg">
+				<img class="piece_ image" src="../images/portfolio/ink-series-shades.jpg">
+			</div>
+			<div class="piece_ thumbnail-set">
+				<div class="piece_ thumbnail --active"></div>
+				<div class="piece_ thumbnail"></div>
+				<div class="piece_ thumbnail"></div>
+				<div class="piece_ thumbnail"></div>
+			</div>
+			<div class="piece_ caption">
+				<h3 class="piece_ title">“Overreaching Imagination, Pt. I”</h3>
+				<p class="piece_ info">Ink on paper, 9" by 11"</p>
+			</div>
+		</div>
+
+		<div class="portfolio_ ideas_ divider"></div>
+
+		<div id="portfolio-arnvik" class="portfolio_ ideas_ piece --captioned">
+			<div class="piece_ image-set">
+				<a href="http://www.arnvik.com" target="_blank"><img class="piece_ image --bordered" src="../images/portfolio/arnvik.png"></a>
+			</div>
+			<div class="piece_ caption">
+				<a href="http://www.arnvik.com" target="_blank"><h3 class="piece_ title">Arnvik Group, LLC</h3></a>
+				<p class="piece_ info">Website</p>
+				<p class="piece_ copy">This minimalist website connects and executive-laden consulting firm with its global, multi-billion dollar clients.</p>
+			</div>
+		</div>
+
+		<div class="portfolio_ ideas_ divider"></div>
+
+		<div id="portfolio-city-nights" class="portfolio_ ideas_ piece --captioned">
 			<div class="piece_ image-set">
 				<img class="piece_ image" src="../images/portfolio/city-nights.jpg">
 			</div>
@@ -166,32 +236,7 @@
 
 		<div class="portfolio_ ideas_ divider"></div>
 
-		<div id="portfolio-arnvik" class="portfolio_ ideas_ piece">
-			<div class="piece_ image-set">
-				<img class="piece_ image --bordered" src="../images/portfolio/arnvik.png">
-			</div>
-			<div class="piece_ caption">
-				<h3 class="piece_ title">Arnvik Group, LLC</h3>
-				<p class="piece_ info">Website</p>
-				<p class="piece_ copy">A simple website  </p>
-			</div>
-		</div>
-
-		<div class="portfolio_ ideas_ divider"></div>
-
-		<div id="portfolio-ink-series" class="portfolio_ ideas_ piece">
-			<div class="piece_ image-set">
-				<img class="piece_ image" src="../images/portfolio/ink-series.jpg">
-			</div>
-			<div class="piece_ caption">
-				<h3 class="piece_ title">Ink Series</h3>
-				<p class="piece_ info">Ink on paper, 9" by 11"</p>
-			</div>
-		</div>
-
-		<div class="portfolio_ ideas_ divider"></div>
-
-		<div id="portfolio-steves-boards" class="portfolio_ ideas_ piece">
+		<div id="portfolio-steves-boards" class="portfolio_ ideas_ piece --captioned">
 			<div class="piece_ image-set">
 				<img class="piece_ image" src="../images/portfolio/steves-boards.jpg">
 			</div>
@@ -204,9 +249,16 @@
 
 		<div class="portfolio_ ideas_ divider"></div>
 
-		<div id="portfolio-pittore-vineyards" class="portfolio_ ideas_ piece">
+		<div id="portfolio-pittore-vineyards" class="portfolio_ ideas_ piece --carousel">
 			<div class="piece_ image-set">
-				<img class="piece_ image" src="../images/portfolio/pittore-vineyards.jpg">
+				<img class="piece_ image --active" src="../images/portfolio/pittore-vineyards.jpg">
+				<img class="piece_ image" src="../images/portfolio/pittore-vineyards-about-us.png">
+				<img class="piece_ image" src="../images/portfolio/pittore-vineyards-shopping.jpg">
+			</div>
+			<div class="piece_ thumbnail-set">
+				<div class="piece_ thumbnail --active"></div>
+				<div class="piece_ thumbnail"></div>
+				<div class="piece_ thumbnail"></div>
 			</div>
 			<div class="piece_ caption">
 				<h3 class="piece_ title">Pittore Vineyards</h3>
@@ -217,31 +269,31 @@
 
 		<div class="portfolio_ ideas_ divider"></div>
 
-		<div id="portfolio-jams" class="portfolio_ ideas_ piece">
+		<div id="portfolio-jams" class="portfolio_ ideas_ piece --captioned">
 			<div class="piece_ image-set">
 				<img class="piece_ image" src="../images/portfolio/jams.jpg">
 			</div>
 			<div class="piece_ caption">
-				<h3 class="piece_ title">Jams</h3>
+				<h3 class="piece_ title">“Sound in Color”</h3>
 				<p class="piece_ info">Gouache and ink on illustration board, <br>4" by 6"</p>
 			</div>
 		</div>
 
 		<div class="portfolio_ ideas_ divider"></div>
 
-		<div id="portfolio-sound-burst" class="portfolio_ ideas_ piece">
+		<div id="portfolio-sound-burst" class="portfolio_ ideas_ piece --captioned">
 			<div class="piece_ image-set">
 				<img class="piece_ image" src="../images/portfolio/sound-burst.jpg">
 			</div>
 			<div class="piece_ caption">
-				<h3 class="piece_ title">Sound Burst</h3>
+				<h3 class="piece_ title">“Sound Burst”</h3>
 				<p class="piece_ info">Gouache and pastel on illustration board, 18" by 15"</p>
 			</div>
 		</div>
 
 		<div class="portfolio_ ideas_ divider"></div>
 
-		<div id="portfolio-eat-local" class="portfolio_ ideas_ piece">
+		<div id="portfolio-eat-local" class="portfolio_ ideas_ piece --captioned">
 			<div class="piece_ image-set">
 				<img class="piece_ image" src="../images/portfolio/eat-local.jpg">
 			</div>
@@ -253,29 +305,16 @@
 
 		<div class="portfolio_ ideas_ divider"></div>
 
-		<div id="portfolio-self-portraits" class="portfolio_ ideas_ piece">
+		<div id="portfolio-self-portraits" class="portfolio_ ideas_ piece --captioned">
 			<div class="piece_ image-set">
 				<img class="piece_ image" src="../images/portfolio/self-portraits.jpg">
 			</div>
 			<div class="piece_ caption">
-				<h3 class="piece_ title">Self Portraits</h3>
+				<h3 class="piece_ title">“Adolescence: Self Portraits”</h3>
 				<p class="piece_ info">Charcoal on poster board, 24" by 30"</p>
 				<p class="piece_ info">Colored pencil on poster board, 20" by 30"</p>
 			</div>
 		</div>
-
-		<div class="portfolio_ ideas_ divider"></div>
-
-		<div id="portfolio-ink-series-look" class="portfolio_ ideas_ piece">
-			<div class="piece_ image-set">
-				<img class="piece_ image" src="../images/portfolio/ink-series-look.jpg">
-			</div>
-			<div class="piece_ caption">
-				<h3 class="piece_ title">Look</h3>
-				<p class="piece_ info">Gouache and pastel on illustration board, 18" by 15"</p>
-			</div>
-		</div>
-
 		
 
 		
