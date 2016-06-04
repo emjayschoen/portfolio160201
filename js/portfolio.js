@@ -1,7 +1,8 @@
 $(document).ready(function(){
 
 	var screenWidth = window.innerWidth;
-	var ACTIVE_CLASS = "_active";
+	var ACTIVE_CLASS = "-active";
+	var $html = $("html");
 
 
 	function print (string) {
@@ -14,37 +15,70 @@ $(document).ready(function(){
 		    print(key + ': ' + $obj[key]);
 		}
 	}
+
+	/* NAV BAR */
+
+	// Fix the nav bar to the screen while scrolling
+	moveScroller();
+	
+	function moveScroller() {
+		var move = function() {
+			var st = $(window).scrollTop();
+			var ot = $("#nav_anchor").offset().top;
+			var s = $("#nav");
+			var ww = window.innerWidth;
+			/*console.log("st: "+st);
+			console.log("ot: "+ot);*/
+			if(st > ot) {
+				s.css({
+					position: "fixed",
+					top: "0px"
+				});
+			} else {
+				if(st < ot) {
+					s.css({
+						position: "absolute",
+						top: ot
+					});
+				}
+			}
+		};
+		$(window).scroll(move);
+		move();
+	}
  
 	/* PIECE CAROUSEL */
 
-	var IMAGE_CHANGE_THRESHOLD = Math.min(100, screenWidth*.2); // Number of pixels a swipe must pass to change focus to the next image
-	var SWIPE_THRESHOLD = 50;
+	var SWIPE_THRESHOLD = 50; // Determines a swipe vs a tap (swipestatus ignores this)
 
-	var activeIndex = 0, $activeImage = null, activeFocusPoint = 0, rightFocusPoint = null, leftFocusPoint = null,
-		changeActiveImage = false, imageSetCount = 0, startPosition = 0, prevDistance = 0,  initalDirection = null, currDirection;
+	// Crossing an image's threshold in the direction of movement changes the active image 
+	// Images remain active w/in their thresholds
+	var IMAGE_CHANGE_THRESHOLD = Math.min(100, screenWidth*.2); 
 
-	// TODO: Ignore images/thumbnails that are already active
+
+	var activeIndex = 0, $activeImage = null, activeFocusPoint = 0, changeActiveImage = false, imageSetCount = 0, 
+		startPosition = 0, prevDistance = 0,  initalDirection = null, currDirection;
+
+	// TODO: Ignore images/dotnavs that are already active
 	// TODO: Add arrow keyboard control
 	// TODO: Add numeric keyboard control (treat it like chrome tabs where 1 = first image, ... , 9 = last image)
 	// TODO: There can only be one carousel per Piece right now
 
 	// Activate the first image of each carousel by default
-	$(".piece._carousel .image-set").each( function() {
+	$(".-carousel .piece_image-set").each( function() {
 		activateCarouselIndex($(this), 0);
 	});
 
 	// Add swipe gestures to image-sets
-    $(".piece._carousel .image-set").swipe( {
+    $(".-carousel .piece_image-set").swipe( {
     	tap:function(event, target) {
-    		if ($(target).hasClass("image")) {
+    		if ($(target).hasClass("piece_image")) {
 		        scrollToCarouselImage($(target));
     		}
 		},
     	swipeStatus: function(event, phase, direction, distance, duration, fingerCount) {
-    		// console.log("threshold 1: "+$.fn.swipe#option.threshold);
-    		// console.log("threshold 2: "+$(this).swipe("option", "threshold"));
 
-    		var $piece = $(this).closest(".piece");
+    		var $piece = $(this).closest(".ideas_piece");
 
     		if (phase == "start") {
     			var transformMatrix = $(this).css("-webkit-transform") || $(this).css("-moz-transform") || $(this).css("-ms-transform") || $(this).css("-o-transform") || $(this).css("transform");
@@ -53,21 +87,13 @@ $(document).ready(function(){
     			
     			// Initiate variables
     			activeIndex = getCarouselActiveIndex($(this));
-    			$activeImage = $(this).find(".image").eq(activeIndex);
+    			$activeImage = $(this).find(".piece_image").eq(activeIndex);
 				activeFocusPoint = findImageFocusPoint($piece, $activeImage);
-				imageSetCount = $(this).find(".image").size();
+				imageSetCount = $(this).find(".piece_image").size();
 				prevDistance = 0;
-				rightFocusPoint = null;
-				leftFocusPoint = null;
 				changeActiveImage = false;
 				initialDirection = null;
 				$(this).swipe("option", "allowPageScroll", "auto");
-				/*if (activeIndex+1 < imageSetCount-1) {
-					rightFocusPoint = findImageFocusPoint($piece, $(this).find(".image").eq(activeIndex+1) );
-				}
-				if (activeIndex > 1) {
-					leftFocusPoint = findImageFocusPoint($piece, $(this).find(".image").eq(activeIndex-1) );
-				}*/
     			
     		}
 
@@ -97,64 +123,33 @@ $(document).ready(function(){
 	    		    }
 	    		    prevDistance = distance;
 
-	    		    scrollCarousel($(this), currPosition); // Have carousel track with swipe while in motion
+	    		    scrollCarousel($(this), currPosition); // Carousel follows the swipe while in motion
 	    		    
-	    		    // Decide whether to change the active image
+	    		    // Determine whether to change the active image
 
-	    		    // The threshold is the sweetspot where a specific image is always active. 
-	    		    // Crossing the sweetspot changes the active image (depending on the direction it's moving)
-
-	    		    // Currently swiping left; Decide whether to go to image on right
+	    		    // Currently swiping left; If activeImage's left threshold is passed, go to image on right
 	    		    if (currDirection == "left" && activeIndex < imageSetCount-1) { 
-	    		    	// Triggered by passing activeImage's left threshold
 	    		    	if (currPosition < (activeFocusPoint - IMAGE_CHANGE_THRESHOLD)) { 
 	    		    		activeIndex++; 
 	    		    		changeActiveImage = true;
 						}
-	    		    	/*else if (rightFocusPoint != null) {
-			    		    	print("rightFocusPoint");
-	    		    		// Triggered by passing nextImage's right threshold (happens when backtracking left)
-		    		    	if (currPosition < (rightFocusPoint + IMAGE_CHANGE_THRESHOLD)) { 
-		    		    		activeIndex++;
-		    		    		changeActiveImage = true;
-		    		    		print("rightFocusPoint passed");
-		    		    	}	 
-						}*/
 			    	}
-			    	// Currently swiping right; Decide whether to go to image on left
+			    	// Currently swiping right; If activeImage's right threshold is passed, go to image on left
 	    		    else if (currDirection == "right" && activeIndex > 0) {
-	    		    	// Triggered by passing activeImage's right threshold
 	    		    	if (currPosition > (activeFocusPoint + IMAGE_CHANGE_THRESHOLD)) { 
-
 	    		    		activeIndex--; 
 		    		    	changeActiveImage = true;
 	    		    	} 
-	    		    	/*else if (leftFocusPoint != null) {
-			    		    	print("leftFocusPoint");
-	    		    		// Triggered by passing prevImage's left threshold (happens when backtracking right)
-	    		    		if (currPosition > (leftFocusPoint - IMAGE_CHANGE_THRESHOLD)) { 
-		    		    		activeIndex--;
-			    		    	changeActiveImage = true;
-			    		    	print("leftFocusPoint passed");
-			    		    }
-	    		    	}*/		
 			    	}
 
+			    	// Activate the new image
 			    	if (changeActiveImage) {
-			    		activateCarouselIndex($(this), activeIndex); // Activate the new index
+			    		activateCarouselIndex($(this), activeIndex); 
 
 			    		// Update variables
 			    		changeActiveImage = false;
-		    			$activeImage = $(this).find(".image").eq(activeIndex);
+		    			$activeImage = $(this).find(".piece_image").eq(activeIndex);
 						activeFocusPoint = findImageFocusPoint($piece, $activeImage);
-						/*if (activeIndex+1 < imageSetCount-1) {
-							print("set rightFocusPoint");
-							rightFocusPoint = findImageFocusPoint($piece, $(this).find(".image").eq(activeIndex+1) );
-						} else { rightFocusPoint = null; }
-						if (activeIndex > 1) {
-							print("set leftFocusPoint");
-							leftFocusPoint = findImageFocusPoint($piece, $(this).find(".image").eq(activeIndex-1) );
-						} else { leftFocusPoint = null; }*/
 			    	}
 			    }
 
@@ -173,29 +168,30 @@ $(document).ready(function(){
 
     });
 
-	// Carousel thumbnail is clicked
-	$(".piece._carousel .thumbnail").click( function(event) {
-		var $piece = $(this).closest(".piece");
-		var index = $(this).closest(".thumbnail-set").find(".thumbnail").index($(this));
+	// Carousel dotnav is clicked
+	$(".-carousel .piece_dotnav").click( function(event) {
+		var $piece = $(this).closest(".ideas_piece");
+		var index = $(this).closest(".piece_dotnav-set").find(".piece_dotnav").index($(this));
 		goToCarouselIndex($piece, index);
 	});
 
 	function scrollToCarouselImage ($image) {
-		var $piece = $image.closest(".piece");
-		var index = $image.closest(".image-set").find(".image").index($image);
+		var $piece = $image.closest(".ideas_piece");
+		var index = $image.closest(".piece_image-set").find(".piece_image").index($image);
 		goToCarouselIndex($piece, index);
 	}
 
 	// Go to the index of the carousel
 	function goToCarouselIndex ($piece, index) {
-		var $imageSet = $piece.find(".image-set");
-		var $image = $imageSet.find(".image").eq(index);
+		var $imageSet = $piece.find(".piece_image-set");
+		var $image = $imageSet.find(".piece_image").eq(index);
 
 		activateCarouselIndex ($imageSet, index);
 
 		// Scroll to $image
 		scrollCarousel($imageSet, findImageFocusPoint($piece, $image));
 	}
+
 
 	// The position of $imageSet that moves focus to the $image
 	function findImageFocusPoint($piece, $image) {
@@ -205,17 +201,17 @@ $(document).ready(function(){
 	}
 
 	
-	// Set clicked image + caption + thumbnail as _active at index
+	// Set clicked image + caption + dotnav as -active at index
 	function activateCarouselIndex ($imageSet, index) {
-		var $image = $imageSet.find(".image").eq(index);
-		var $captionSet = $imageSet.siblings(".caption-set");
-		var $caption = $captionSet.find(".info").eq(index);
-		var $thumbnailSet = $imageSet.siblings(".thumbnail-set");
-		var $thumbnail = $thumbnailSet.find(".thumbnail").eq(index);
+		var $image = $imageSet.find(".piece_image").eq(index);
+		var $captionSet = $imageSet.siblings(".piece_caption-set");
+		var $caption = $captionSet.find(".piece_info").eq(index);
+		var $dotnavSet = $imageSet.siblings(".piece_dotnav-set");
+		var $dotnav = $dotnavSet.find(".piece_dotnav").eq(index);
 
-		activateItem($image, ".image");
-		activateItem($caption, ".info");
-		activateItem($thumbnail, ".thumbnail");
+		activateItem($image, ".piece_image");
+		activateItem($caption, ".piece_info");
+		activateItem($dotnav, ".piece_dotnav");
 	}
 
 	// Set $item as only one --active,
@@ -225,7 +221,7 @@ $(document).ready(function(){
 	}
 
 	function getCarouselActiveIndex ($imageSet) {
-		var $activeImage = $imageSet.find(".image._active");
+		var $activeImage = $imageSet.find(".piece_image."+ACTIVE_CLASS);
 		return $activeImage.index();
 	}
 
@@ -235,6 +231,21 @@ $(document).ready(function(){
 	}
 
    
+
+   	/* MOBILE */
+
+   	var $navBtn = $(".nav_btn");
+   	var $mainContent = $("#main-content");
+   	var NAV_OPEN_CLASS = "-js-nav-open";
+
+   	$navBtn.click( function(event) {
+   		$html.toggleClass(NAV_OPEN_CLASS);
+   	});
+
+   	$mainContent.click( function(event) {
+   		$html.removeClass(NAV_OPEN_CLASS);
+   	});
+
 
 
 
