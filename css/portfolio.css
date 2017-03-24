@@ -376,8 +376,24 @@ html {
 .ideas .piece_image.-bordered {
 	border: 2px solid #eee;
 }
+.ideas .piece_image.-bordered.-app-icon {
+	border-color: #e0e0e0;
+}
 .ideas .piece_image.-app-icon {
 	border-radius: 25%;
+}
+.-app-icon.-spaced {
+	padding: 30px;
+}
+#nomad .piece_image:first-of-type {
+	/*width: 250px;*/
+	width: 340px;
+	padding: 60px;
+	margin-right: 100px;
+}
+
+#nomad .-app-icon {
+	width: 180px;
 }
 
 .ideas .-captioned .piece_caption {
@@ -536,6 +552,55 @@ html {
 	transform: scale(1);
 }
 
+.piece_test {
+	width: 300px;
+	height: 300px;
+	background: #3ADA55;
+}
+
+.piece_image.-grid {
+	height: 100%;
+	white-space: normal;
+}
+.-col2 {
+	width: 580px;
+}
+.grid_image {
+	display: inline-block;
+	margin: 0 -1px;
+	vertical-align: top;
+}
+.grid_image.-bordered {
+	border: none;
+	padding: 1px;
+	box-shadow: inset 0px 0px 0px 1px #e6e6e6;
+}
+.-spaced {
+	padding: 20px;
+}
+.-spaced .grid_image {
+	border: 10px solid transparent;
+}
+.-col1 {
+	display: inline-table;
+	width: auto;
+}
+.-col1 .grid_col {
+	display: table-cell;
+	width: 1px;
+}
+.-col1 .grid_image {
+	width: auto;
+	/**/
+	display: inline-table;
+	height: 60%;
+	margin: 0;
+	vertical-align: top;
+}
+.-col2 .grid_image {
+	width: 50%;
+}
+
 /* --PORTFOLIO-- */
 
 #portfolio {
@@ -646,7 +711,7 @@ body+div { /* Imagus */
 	
 	.ideas .-carousel .piece_image {
 		max-width: 90vw;
-		margin-right: 10vw;
+		margin-right: 10vw !important; /* To overwite #nomad .piece_image:first..'s margin */
 	}
 	#intro, [class^="ideas_"] {
 		padding: 0 5vw;
@@ -756,12 +821,6 @@ body+div { /* Imagus */
 }
 
 @media (max-width: 600px) {
-	#main-content .ideas_piece {
-		padding-top: 60px;
-	}
-	#main-content .ideas .piece_image {
-		max-height: 500px;
-	}
 	#header {
 		height: 130px;
 		top: 40px;
@@ -771,6 +830,15 @@ body+div { /* Imagus */
 	#header .logo {
 		top: 150px;
 		left: 5vw;
+	}
+	#main-content .ideas_piece {
+		padding-top: 60px;
+	}
+	#main-content .ideas .piece_image {
+		max-height: 500px;
+	}
+	#nomad .piece_image:first-of-type {
+		padding: 20px;
 	}
 	.intro_tagline {
 		font-size: 1.8em;

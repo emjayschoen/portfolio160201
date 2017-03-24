@@ -3,9 +3,19 @@ $(document).ready(function(){
 	var screenWidth = window.innerWidth;
 	var ACTIVE_CLASS = "-active";
 	var $html = $("html");
+	var breakpoints = {
+		phone_small: 320,
+		phone: 375,
+		phone_big: 480,
+		tablet_small: 650,
+		tablet: 780,
+		desktop_small: 1024,
+		desktop: 1366,
+		desktop_big: 1440
+	};
 
 
-	function print (string) {
+	/*function print (string) {
 		console.log(string);
 	}
 
@@ -13,6 +23,16 @@ $(document).ready(function(){
 		print("PRINT OBJECT: "+$obj);
 		for(var key in $obj) {
 		    print(key + ': ' + $obj[key]);
+		}
+	}*/
+
+	function print(string, obj = null) {
+		if (obj) {
+			console.log("-----" + string + "-----");
+			console.log(obj);
+		}
+		else {
+			console.log(string);
 		}
 	}
 
@@ -65,9 +85,17 @@ $(document).ready(function(){
 	// TODO: There can only be one carousel per Piece right now
 
 	// Activate the first image of each carousel by default
-	$(".-carousel .piece_image-set").each( function() {
-		activateCarouselIndex($(this), 0);
-	});
+	if(screenWidth > breakpoints.tablet) {
+		$(".-carousel .piece_image-set").each( function() {
+			activateCarouselIndex($(this), 0);
+		});
+	}
+	else { // On mobile, 
+		$(".-carousel").each( function() {
+			goToCarouselIndex($(this), 0);
+		});
+	}
+	
 
 	// Add swipe gestures to image-sets
     $(".-carousel .piece_image-set").swipe( {
@@ -75,10 +103,14 @@ $(document).ready(function(){
     		if ($(target).hasClass("piece_image")) {
 		        scrollToCarouselImage($(target));
     		}
+    		else if ($(target).closest(".piece_image")) {
+    			scrollToCarouselImage($(target).closest(".piece_image"));
+    		}
 		},
     	swipeStatus: function(event, phase, direction, distance, duration, fingerCount) {
 
     		var $piece = $(this).closest(".ideas_piece");
+    		var $pieceImages = $(this).find(".piece_image");
 
     		if (phase == "start") {
     			var transformMatrix = $(this).css("-webkit-transform") || $(this).css("-moz-transform") || $(this).css("-ms-transform") || $(this).css("-o-transform") || $(this).css("transform");
@@ -87,9 +119,9 @@ $(document).ready(function(){
     			
     			// Initiate variables
     			activeIndex = getCarouselActiveIndex($(this));
-    			$activeImage = $(this).find(".piece_image").eq(activeIndex);
+    			$activeImage = $pieceImages.eq(activeIndex);
 				activeFocusPoint = findImageFocusPoint($piece, $activeImage);
-				imageSetCount = $(this).find(".piece_image").size();
+				imageSetCount = $pieceImages.size();
 				prevDistance = 0;
 				changeActiveImage = false;
 				initialDirection = null;
@@ -148,7 +180,7 @@ $(document).ready(function(){
 
 			    		// Update variables
 			    		changeActiveImage = false;
-		    			$activeImage = $(this).find(".piece_image").eq(activeIndex);
+		    			$activeImage = $pieceImages.eq(activeIndex);
 						activeFocusPoint = findImageFocusPoint($piece, $activeImage);
 			    	}
 			    }
@@ -195,7 +227,7 @@ $(document).ready(function(){
 
 	// The position of $imageSet that moves focus to the $image
 	function findImageFocusPoint($piece, $image) {
-		var leftAnchor = ($piece.width() - $image.width()) / 2;  /* Center-aligned */
+		var leftAnchor = ($piece.width() - $image.outerWidth(false)) / 2;  /* Center-aligned */
 		/* var leftAnchor = parseInt( $("#intro").css("margin-left") );  Left-aligned */
 		return - $image.position().left + leftAnchor;
 	}
